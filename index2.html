@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANGAT - Heritage Walks & History Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B5FBF;
+            --secondary: #FF6B8B;
+            --accent: #00C9B7;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --cream: #FFF5E1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1) 0%, rgba(255, 107, 139, 0.05) 100%);
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+            opacity: 0.7;
+            border-radius: 0 0 0 100px;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 95, 191, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 95, 191, 0.4);
+        }
+        
+        .secondary-button {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+        
+        .secondary-button:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotate(3deg);
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover {
+            transform: rotate(0deg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Events Section */
+        .events {
+            background-color: var(--cream);
+            position: relative;
+        }
+        
+        .events:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M54 54c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-12c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm-12 12c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-12c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm-12 12c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z" fill="%238B5FBF" fill-opacity="0.05"/></svg>');
+        }
+        
+        .events-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .event-date {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+        
+        .event-date .day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .event-date .month {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .event-content {
+            padding: 2rem;
+            flex: 1;
+        }
+        
+        .event-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .event-tag {
+            background-color: var(--cream);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .event-details {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+        }
+        
+        .event-detail i {
+            color: var(--accent);
+        }
+        
+        /* Registration Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Media Section (Blogs, YouTube, Podcasts) */
+        .media-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active, .tab-btn:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .media-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .media-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .media-card.blog {
+            border-top: 4px solid var(--primary);
+        }
+        
+        .media-card.youtube {
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .media-card.podcast {
+            border-top: 4px solid var(--accent);
+        }
+        
+        .media-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .media-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .media-card:hover .media-img img {
+            transform: scale(1.05);
+        }
+        
+        .media-content {
+            padding: 1.5rem;
+        }
+        
+        .media-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .media-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .media-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .media-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .media-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark);
+            color: white;
+            position: relative;
+        }
+        
+        .testimonials .section-title h2 {
+            color: white;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 4rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--cream);
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                flex-direction: column;
+            }
+            
+            .hero:before {
+                width: 100%;
+                opacity: 0.2;
+                border-radius: 0;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .event-card {
+                flex-direction: column;
+            }
+            
+            .event-date {
+                flex-direction: row;
+                justify-content: space-between;
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                background-color: white;
+                width: 280px;
+                height: 100vh;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                gap: 1.5rem;
+                transition: right 0.3s;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .event-details {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-history"></i>
+                    <span>SANGAT</span>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#media">Media</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Walk Through History, Discover Nashik's Heritage</h1>
+                <p>Join SANGAT for immersive heritage walks where history comes alive. Explore ancient sites, hear captivating stories, and connect with fellow history enthusiasts.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#events" class="cta-button">Join a Heritage Walk</a>
+                    <a href="#media" class="cta-button secondary-button">Explore Our Content</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>SANGAT is a vibrant community of history enthusiasts, storytellers, and explorers dedicated to uncovering and sharing the rich heritage of Nashik. We believe that every street, monument, and artifact has a story waiting to be told.</p>
+                    <p>Through our curated heritage walks, we take you on journeys through time, exploring ancient temples, colonial architecture, and hidden historical gems. Our walks are more than just tours - they're immersive experiences where history comes alive.</p>
+                    <p>We also produce engaging content through our blog, YouTube channel, and podcast, making historical knowledge accessible and exciting for everyone.</p>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">Become a Member</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1564507004663-b6dfb3e2ede5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Heritage walk group">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Heritage Walks</h2>
+            </div>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="day">25</div>
+                        <div class="month">Nov</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tags">
+                            <span class="event-tag">Panchavati</span>
+                            <span class="event-tag">Spiritual</span>
+                            <span class="event-tag">Morning Walk</span>
+                        </div>
+                        <h3>Ram Kund & Kalaram Temple: Spiritual Heart of Nashik</h3>
+                        <p>Explore the sacred Panchavati area, visit ancient temples, and hear mythological stories that define Nashik's spiritual heritage.</p>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <i class="far fa-clock"></i>
+                                <span>7:00 AM - 10:00 AM</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Ram Kund, Panchavati</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-users"></i>
+                                <span>25 spots remaining</span>
+                            </div>
+                        </div>
+                        <button class="cta-button participate-btn" data-event="Ram Kund & Kalaram Temple Walk" style="padding: 10px 25px; font-size: 1rem;">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="day">02</div>
+                        <div class="month">Dec</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tags">
+                            <span class="event-tag">Architecture</span>
+                            <span class="event-tag">Colonial</span>
+                            <span class="event-tag">Evening Walk</span>
+                        </div>
+                        <h3>Colonial Nashik: British Architecture & Urban History</h3>
+                        <p>Discover British-era buildings, cantonment areas, and the fascinating blend of Maratha and colonial architectural styles.</p>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <i class="far fa-clock"></i>
+                                <span>4:00 PM - 7:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Main Road, Old Nashik</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-users"></i>
+                                <span>18 spots remaining</span>
+                            </div>
+                        </div>
+                        <button class="cta-button participate-btn" data-event="Colonial Nashik Walk" style="padding: 10px 25px; font-size: 1rem;">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="day">09</div>
+                        <div class="month">Dec</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-tags">
+                            <span class="event-tag">Vineyards</span>
+                            <span class="event-tag">Cultural</span>
+                            <span class="event-tag">Weekend</span>
+                        </div>
+                        <h3>Sula Vineyards: Ancient Winemaking to Modern Excellence</h3>
+                        <p>A unique exploration of Nashik's wine history, from ancient traditions to the modern wine revolution, with tasting included.</p>
+                        <div class="event-details">
+                            <div class="event-detail">
+                                <i class="far fa-clock"></i>
+                                <span>3:00 PM - 6:00 PM</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sula Vineyards, Gangapur</span>
+                            </div>
+                            <div class="event-detail">
+                                <i class="fas fa-users"></i>
+                                <span>30 spots remaining</span>
+                            </div>
+                        </div>
+                        <button class="cta-button participate-btn" data-event="Sula Vineyards History Walk" style="padding: 10px 25px; font-size: 1rem;">Register Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Register for Heritage Walk</h3>
+            <p id="eventTitle" style="color: var(--primary); font-weight: 600; margin-bottom: 1.5rem;">Event Title</p>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="participants">Number of Participants</label>
+                    <select id="participants" name="participants">
+                        <option value="1">1 person</option>
+                        <option value="2">2 people</option>
+                        <option value="3">3 people</option>
+                        <option value="4">4 people</option>
+                        <option value="5">5 people</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Any questions or special requirements?</label>
+                    <textarea id="message" name="message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Media Section (Blogs, YouTube, Podcasts) -->
+    <section id="media">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Our Content</h2>
+            </div>
+            
+            <div class="media-tabs">
+                <button class="tab-btn active" data-tab="blogs">Blog Articles</button>
+                <button class="tab-btn" data-tab="youtube">YouTube Videos</button>
+                <button class="tab-btn" data-tab="podcasts">Podcasts</button>
+            </div>
+            
+            <!-- Blogs Tab -->
+            <div class="tab-content active" id="blogs-tab">
+                <div class="media-grid">
+                    <div class="media-card blog">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Ancient Architecture">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="far fa-calendar"></i> Nov 15, 2023</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3 class="media-title">The Hidden Symbolism in Nashik's Temple Architecture</h3>
+                            <p class="media-description">Discover the fascinating architectural details and symbolic elements in Nashik's ancient temples that tell stories beyond religion.</p>
+                            <a href="#" class="media-link">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card blog">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1531263060786-566ad6a8d5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Historical Artifacts">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="far fa-calendar"></i> Nov 5, 2023</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3 class="media-title">Forgotten Trade Routes: Nashik's Role in Ancient Commerce</h3>
+                            <p class="media-description">How Nashik served as a crucial junction for trade routes connecting the Deccan plateau with coastal regions.</p>
+                            <a href="#" class="media-link">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card blog">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289dd05d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Historical Site">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="far fa-calendar"></i> Oct 28, 2023</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h3 class="media-title">The Godavari River: Lifeline of Nashik's Civilization</h3>
+                            <p class="media-description">Exploring how the Godavari river shaped Nashik's history, culture, and urban development through centuries.</p>
+                            <a href="#" class="media-link">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="cta-button">View All Blog Posts</a>
+                </div>
+            </div>
+            
+            <!-- YouTube Tab -->
+            <div class="tab-content" id="youtube-tab">
+                <div class="media-grid">
+                    <div class="media-card youtube">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1594144291346-0a7d5d1b3f0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="YouTube Video">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fab fa-youtube"></i> YouTube</span>
+                                <span><i class="far fa-clock"></i> 12 min</span>
+                            </div>
+                            <h3 class="media-title">Panchavati Heritage Walk: A Visual Journey</h3>
+                            <p class="media-description">Join us on a virtual tour of Panchavati's sacred sites, with detailed explanations of historical and mythological significance.</p>
+                            <a href="#" class="media-link">Watch Video <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card youtube">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1529254479751-fbacb4c7a587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="YouTube Video">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fab fa-youtube"></i> YouTube</span>
+                                <span><i class="far fa-clock"></i> 18 min</span>
+                            </div>
+                            <h3 class="media-title">Interview with a Temple Archaeologist</h3>
+                            <p class="media-description">Conversation with Dr. Rajesh Deshmukh about recent archaeological discoveries in Nashik's temple complexes.</p>
+                            <a href="#" class="media-link">Watch Video <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card youtube">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="YouTube Video">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fab fa-youtube"></i> YouTube</span>
+                                <span><i class="far fa-clock"></i> 15 min</span>
+                            </div>
+                            <h3 class="media-title">The Art of Stone Carving: Nashik's Sculptural Heritage</h3>
+                            <p class="media-description">Documentary exploring the traditional stone carving techniques preserved by Nashik's artisan families.</p>
+                            <a href="#" class="media-link">Watch Video <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="cta-button">Visit Our YouTube Channel</a>
+                </div>
+            </div>
+            
+            <!-- Podcasts Tab -->
+            <div class="tab-content" id="podcasts-tab">
+                <div class="media-grid">
+                    <div class="media-card podcast">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Podcast">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fas fa-podcast"></i> Podcast</span>
+                                <span><i class="far fa-clock"></i> 45 min</span>
+                            </div>
+                            <h3 class="media-title">Episode 12: Nashik During the Mughal Era</h3>
+                            <p class="media-description">Exploring Nashik's transformation during Mughal rule, with historian Dr. Anjali Patil sharing lesser-known facts.</p>
+                            <a href="#" class="media-link">Listen Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card podcast">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Podcast">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fas fa-podcast"></i> Podcast</span>
+                                <span><i class="far fa-clock"></i> 52 min</span>
+                            </div>
+                            <h3 class="media-title">Episode 11: Folklore & Legends of the Godavari</h3>
+                            <p class="media-description">Local storytellers share ancient folktales and legends associated with the Godavari river and its ghats.</p>
+                            <a href="#" class="media-link">Listen Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card podcast">
+                        <div class="media-img">
+                            <img src="https://images.unsplash.com/photo-1589903308904-1010c2294adc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Podcast">
+                        </div>
+                        <div class="media-content">
+                            <div class="media-meta">
+                                <span><i class="fas fa-podcast"></i> Podcast</span>
+                                <span><i class="far fa-clock"></i> 38 min</span>
+                            </div>
+                            <h3 class="media-title">Episode 10: The Wine Revolution in Nashik</h3>
+                            <p class="media-description">From ancient winemaking traditions to becoming India's wine capital - the fascinating story of Nashik's vineyards.</p>
+                            <a href="#" class="media-link">Listen Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="cta-button">Browse All Podcast Episodes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Community Says</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"The Panchavati walk completely changed how I see my own city. I've lived in Nashik for 25 years but discovered stories and details I never knew existed. SANGAT's guides are incredibly knowledgeable and passionate."</p>
+                    <p class="testimonial-author">- Priya Sharma, Nashik Resident</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Plan a Private Heritage Walk</h3>
+                    <p style="margin-bottom: 2rem; color: var(--gray);">Interested in a custom heritage walk for your group, organization, or special event? Get in touch with us!</p>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Your Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Meeting Point</h4>
+                            <p>Ram Kund Entrance, Panchavati<br>Nashik, Maharashtra 422003</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+91 98765 43210</p>
+                            <p>Monday to Saturday, 9 AM - 6 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>hello@sangatnashik.com</p>
+                            <p>For walk registrations and inquiries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4>Community</h4>
+                            <p>Join our WhatsApp group for updates</p>
+                            <p>Follow us on social media</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <i class="fas fa-history"></i>
+                        <span>SANGAT</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: #aaa; max-width: 300px;">A community dedicated to exploring, preserving, and sharing Nashik's rich historical heritage through walks, stories, and content.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-spotify"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#events">Heritage Walks</a></li>
+                        <li><a href="#media">Blog & Media</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Media</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-tab="blogs">Blog Articles</a></li>
+                        <li><a href="#" data-tab="youtube">YouTube Channel</a></li>
+                        <li><a href="#" data-tab="podcasts">History Podcast</a></li>
+                        <li><a href="#">Photo Gallery</a></li>
+                        <li><a href="#">Event Calendar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Panchavati, Nashik</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> hello@sangatnashik.com</li>
+                        <li><i class="far fa-clock"></i> Walks every weekend</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SANGAT Heritage Community. All rights reserved.</p>
+                <p>Bringing history to life, one walk at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Registration Modal
+        const registrationModal = document.getElementById('registrationModal');
+        const closeModal = document.getElementById('closeModal');
+        const participateBtns = document.querySelectorAll('.participate-btn');
+        const eventTitle = document.getElementById('eventTitle');
+        
+        participateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const eventName = btn.getAttribute('data-event');
+                eventTitle.textContent = eventName;
+                registrationModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            registrationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if(e.target === registrationModal) {
+                registrationModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Form Submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const eventName = eventTitle.textContent;
+            
+            // Show success message
+            alert(`Thank you ${name}! Your registration for "${eventName}" has been received. We've sent confirmation details to ${email}. See you at the walk!`);
+            
+            // Reset form and close modal
+            this.reset();
+            registrationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            
+            alert(`Thank you ${name}! Your message has been received. We'll get back to you within 24 hours.`);
+            
+            this.reset();
+        });
+        
+        // Media Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Footer links to switch tabs
+        document.querySelectorAll('.footer-links a[data-tab]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.getAttribute('data-tab');
+                
+                // Scroll to media section
+                document.getElementById('media').scrollIntoView({ behavior: 'smooth' });
+                
+                // Switch to the appropriate tab after a short delay
+                setTimeout(() => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                }, 500);
+            });
+        });
+        
+        // Add active class to nav links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Event countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('Nov 25, 2023 07:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            if(distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                
+                // Update first event card with countdown
+                const firstEventCard = document.querySelector('.event-card:first-child .event-content');
+                if(firstEventCard && !firstEventCard.querySelector('.countdown')) {
+                    const countdownElement = document.createElement('div');
+                    countdownElement.className = 'countdown';
+                    countdownElement.style.marginTop = '10px';
+                    countdownElement.style.fontWeight = '600';
+                    countdownElement.style.color = 'var(--primary)';
+                    countdownElement.style.display = 'flex';
+                    countdownElement.style.alignItems = 'center';
+                    countdownElement.style.gap = '8px';
+                    firstEventCard.appendChild(countdownElement);
+                }
+                
+                if(firstEventCard.querySelector('.countdown')) {
+                    firstEventCard.querySelector('.countdown').innerHTML = `<i class="far fa-clock"></i> Starting in: ${days} days, ${hours} hours`;
+                }
+            }
+        }
+        
+        // Update countdown every minute
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+        
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements to animate
+            document.querySelectorAll('.event-card, .media-card, .info-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
